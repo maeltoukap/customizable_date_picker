@@ -240,7 +240,7 @@ class _MonthPickerState<T extends Object> extends State<MonthPicker<T>> {
                 icon: widget.datePickerStyles.prevIcon,
                 tooltip: _isDisplayingFirstYear
                     ? null
-                    : '${localizations.formatYear(_previousYearDate)}',
+                    : localizations.formatYear(_previousYearDate),
                 onPressed: _isDisplayingFirstYear ? null : _handlePreviousYear,
               ),
             ),
@@ -255,7 +255,7 @@ class _MonthPickerState<T extends Object> extends State<MonthPicker<T>> {
                 icon: widget.datePickerStyles.nextIcon,
                 tooltip: _isDisplayingLastYear
                     ? null
-                    : '${localizations.formatYear(_nextYearDate)}',
+                    : localizations.formatYear(_nextYearDate),
                 onPressed: _isDisplayingLastYear ? null : _handleNextYear,
               ),
             ),
@@ -424,9 +424,9 @@ class _MonthPicker<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int monthsInYear = 12;
+    const int monthsInYear = 12;
     final int year = displayedYear.year;
-    final int day = 1;
+    const int day = 1;
 
     final List<Widget> labels = <Widget>[];
 

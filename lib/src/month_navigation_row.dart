@@ -88,7 +88,7 @@ class MonthNavigationRow extends StatelessWidget {
           sortKey: MonthPickerSortKey.nextMonth,
           child: IconBtn(
             key: nextPageIconKey,
-            icon: nextIcon, //TODO: make it customizable and optional
+            icon: nextIcon, //TODO: #1 make it customizable and optional
             tooltip: nextMonthTooltip,
             onTap: onNextMonthTapped,
           ),
