@@ -10,11 +10,15 @@ import '../event.dart';
 class DayPickerPage extends StatefulWidget {
   /// Custom events.
   final List<Event> events;
+  final TextStyle dayHeaderStyle;
 
   ///
   const DayPickerPage({
     Key? key,
     this.events = const [],
+    this.dayHeaderStyle = const TextStyle(
+      color: Colors.red,
+    ),
   }) : super(key: key);
 
   @override
@@ -24,8 +28,10 @@ class DayPickerPage extends StatefulWidget {
 class _DayPickerPageState extends State<DayPickerPage> {
   DateTime _selectedDate = DateTime.now();
 
-  final DateTime _firstDate = DateTime.now().subtract(const Duration(days: 30)); //Define date range to display
-  final DateTime _lastDate = DateTime.now().add(const Duration(days: 391)); //Define date range to display
+  final DateTime _firstDate = DateTime.now()
+      .subtract(const Duration(days: 30)); //Define date range to display
+  final DateTime _lastDate = DateTime.now()
+      .add(const Duration(days: 391)); //Define date range to display
 
   Color selectedDateStyleColor = Colors.blue;
   Color selectedSingleDateDecorationColor = Colors.red;
@@ -50,12 +56,10 @@ class _DayPickerPageState extends State<DayPickerPage> {
         color: selectedSingleDateDecorationColor,
         shape: BoxShape.circle,
       ),
-      dayHeaderStyle: const DayHeaderStyle(
-        textStyle: TextStyle(
-          color: Colors.red,
-        ),
+      dayHeaderStyle: DayHeaderStyle(
+        textStyle: widget.dayHeaderStyle,
       ),
-      // dayHeaderTitleBuilder: _dayHeaderTitleBuilder,
+      dayHeaderTitleBuilder: _dayHeaderTitleBuilder,
     );
 
     return Flex(
@@ -79,7 +83,7 @@ class _DayPickerPageState extends State<DayPickerPage> {
             eventDecorationBuilder: _eventDecorationBuilder,
           ),
         ),
-        Container(
+        SizedBox(
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),

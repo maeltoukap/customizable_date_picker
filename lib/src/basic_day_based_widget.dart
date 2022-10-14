@@ -98,49 +98,49 @@ class DayBasedPicker<T> extends StatelessWidget with CommonDatePickerFunctions {
     );
   }
 
-  // List<Widget> _buildHeaders(
-  //   MaterialLocalizations localizations,
-  //   BuildContext context,
-  // ) {
-  //   final int firstDayOfWeekIndex = datePickerStyles.firstDayOfeWeekIndex ??
-  //       localizations.firstDayOfWeekIndex;
+  List<Widget> _buildHeaders(
+    MaterialLocalizations localizations,
+    BuildContext context,
+  ) {
+    final int firstDayOfWeekIndex = datePickerStyles.firstDayOfeWeekIndex ??
+        localizations.firstDayOfWeekIndex;
 
-  //   DayHeaderStyleBuilder dayHeaderStyleBuilder =
-  //       datePickerStyles.dayHeaderStyleBuilder ??
-  //           // ignore: avoid_types_on_closure_parameters
-  //           (int i) => datePickerStyles.dayHeaderStyle;
+    DayHeaderStyleBuilder dayHeaderStyleBuilder =
+        datePickerStyles.dayHeaderStyleBuilder ??
+            // ignore: avoid_types_on_closure_parameters
+            (int i) => datePickerStyles.dayHeaderStyle;
 
-  //   // final weekdayTitles = _getWeekdayTitles(context);
-  //   // List<Widget> headers = getDayHeaders(
-  //   //   dayHeaderStyleBuilder,
-  //   //   weekdayTitles,
-  //   //   firstDayOfWeekIndex,
-  //   // );
+    final weekdayTitles = _getWeekdayTitles(context);
+    List<Widget> headers = getDayHeaders(
+      dayHeaderStyleBuilder,
+      weekdayTitles,
+      firstDayOfWeekIndex,
+    );
 
-  //   // return headers;
-  // }
+    return headers;
+  }
 
-  // List<String> _getWeekdayTitles(BuildContext context) {
-  //   final curLocale = Localizations.maybeLocaleOf(context) ?? _defaultLocale;
+  List<String> _getWeekdayTitles(BuildContext context) {
+    final curLocale = Localizations.maybeLocaleOf(context) ?? _defaultLocale;
 
-  //   // There is no access to weekdays full titles from [MaterialLocalizations]
-  //   // so use intl to get it.
-  //   final fullLocalizedWeekdayHeaders =
-  //       intl.DateFormat.E(curLocale.toLanguageTag()).dateSymbols.WEEKDAYS;
+    // There is no access to weekdays full titles from [MaterialLocalizations]
+    // so use intl to get it.
+    final fullLocalizedWeekdayHeaders =
+        intl.DateFormat.E(curLocale.toLanguageTag()).dateSymbols.WEEKDAYS;
 
-  //   final narrowLocalizedWeekdayHeaders = localizations.narrowWeekdays;
+    final narrowLocalizedWeekdayHeaders = localizations.narrowWeekdays;
 
-  //   // final weekdayTitles =
-  //   //     List.generate(fullLocalizedWeekdayHeaders.length, (dayOfWeek) {
-  //   //   final builtHeader = datePickerStyles.dayHeaderTitleBuilder
-  //   //       ?.call(dayOfWeek, fullLocalizedWeekdayHeaders);
-  //   //   final result = builtHeader ?? narrowLocalizedWeekdayHeaders[dayOfWeek];
+    final weekdayTitles =
+        List.generate(fullLocalizedWeekdayHeaders.length, (dayOfWeek) {
+      final builtHeader = datePickerStyles.dayHeaderTitleBuilder
+          ?.call(dayOfWeek, fullLocalizedWeekdayHeaders);
+      final result = builtHeader ?? narrowLocalizedWeekdayHeaders[dayOfWeek];
 
-  //   //   return result;
-  //   // });
+      return result;
+    });
 
-  //   // return weekdayTitles;
-  // }
+    return weekdayTitles;
+  }
 
   List<Widget> _buildCellsBeforeStart(MaterialLocalizations localizations) {
     List<Widget> result = [];
